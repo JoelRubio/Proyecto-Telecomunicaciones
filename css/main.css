@@ -1,0 +1,33 @@
+/*
+
+Autor: Joel Alejandro Rubio Aguilar.
+Fecha: 12-Septiembre-2019.
+
+*/
+
+body {
+    background: #FFFFFF !important;
+}
+
+#btnSubmit:hover {
+        
+    background: white !important;
+    color: #22D69D !important;
+    border: 1px solid #22D69D !important;    
+}
+
+.wrongInput {
+
+    background: #fff6f6 !important;
+    border-color: #e0b4b4 !important;
+    color: #9f3a38 !important;
+}
+
+
+.styleCanvas {
+
+    margin-top: 20px;
+    margin-left: -20px;
+    width: 100%;
+}
+

@@ -1,0 +1,160 @@
+<!--
+
+Autor: Rubio Aguilar Joel Alejandro.
+Fecha: 8-Septiembre-2019.
+Actualización: 14-Septiembre-2019.
+
+-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">        
+        <title>Proyecto de telecomunicaciones</title>
+    </head>
+    <body>
+
+        
+        <div id="topMenu" class="ui mini menu stackable">            
+            <a class="item">
+                Proyecto para la codificación de señales binarias
+            </a>
+
+            <div class="right menu" style="margin-right: 30px;">                
+                <div class="item">
+                    <a id="githubBtn">
+                        <button class="ui button" data-tooltip="Consultar proyecto en GitHub" data-position="bottom right">
+                            <i class="ui icon github"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui middle aligned center aligned grid">
+        
+            <div class="column" style="margin-top: 5%;">
+    
+                <h1>Codificación de bits</h1>
+                        
+
+                <form method="POST" class="ui large form" id="formEncoding">
+        
+                    <div class="field">
+
+                        <input type="text" name="valueEncode" id="valueEncode" placeholder="Ingrese los valores..." maxlength="19"
+                            style="width: 50%;">
+            
+                        <br>
+                        <div id="errorMessage" class="ui basic red pointing label" style="display: none;">
+                            Ingrese al menos un bit.
+                        </div>
+                        
+                    </div>                                        
+        
+                    <button type="submit" name="btnEncode" class="ui button" id="btnSubmit"
+                        style="background: #22D69D; color: white; border: 1px solid #22D69D; transition: 0.5s; margin-bottom: 40px; ">
+                        Codificar
+                    </button>
+        
+                </form>                        
+
+            </div>
+
+        </div>
+
+        <div class="ui container">            
+
+            <table id="tableBits" class="ui table celled  selectable stackable" style="width: auto; margin: auto; display: none;">
+                <thead>
+                    <tr>
+                        <th>Codificación</th>
+                        <th>Resultado de la codificación</th>
+                        <th>Descargar</th>
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <tr>
+                        <td>NRZ-L</td>
+                        <td>
+                            <canvas height="100" id="nrzl" class="styleCanvas"></canvas>
+                        </td>
+                        <td class="center aligned">
+                            <a download="nrzlEncoding.png" id="downloadNrzl">
+                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">                                
+                                    <i class="ui icon download"></i>                                
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td>Manchester</td>
+                        <td>
+                            <canvas height="100" id="manchester" class="styleCanvas"></canvas>
+                        </td>
+                        <td class="center aligned">
+                            <a download="manchesterEncoding.png" id="downloadManchester">
+                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
+                                    <i class="ui icon download"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td>Differential Manchester</td>
+                        <td>
+                            <canvas height="100" id="diffManchester" class="styleCanvas"></canvas>
+                        </td>
+                        <td class="center aligned">
+                            <a download="diffManchesterEncoding.png" id="downloadDiffManchester">
+                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
+                                    <i class="ui icon download"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td>Bipolar AMI</td>
+                        <td>
+                            <canvas height="100" id="bipolarAmi" class="styleCanvas"></canvas>
+                        </td>
+                        <td class="center aligned">
+                            <a download="bipolarAmiEncoding.png" id="downloadBipolarAmi">
+                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
+                                    <i class="ui icon download"></i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br><br>
+
+        <footer>
+            <h5 class="ui header" style="text-align: center">Creado por: Joel Rubio.</h5>            
+        </footer>
+
+    </body>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>            
+    <script type="text/javascript" src="javascript/canvasSettings.js"></script>
+    <script type="text/javascript" src="javascript/canvasToImage.js"></script>
+    <script type="text/javascript" src="javascript/nrzlFunctions.js"></script>
+    <script type="text/javascript" src="javascript/manchesterFunctions.js"></script>
+    <script type="text/javascript" src="javascript/diffManchesterFunctions.js"></script>
+    <script type="text/javascript" src="javascript/bipolarAmiFunctions.js"></script>
+    <script type="text/javascript" src="javascript/main.js"></script>    
+
+    </body>
+</html>
