@@ -7,7 +7,8 @@ Fecha: 13-Septiembre-2019.
 
 
 /**
- * Impresión de la señal binaria para manchester.
+ * Imprime las líneas correspondientes a los
+ * valores 1 o 0 de la codificación "Manchester".
  * 
  * @param {object} canvas 
  * @param {array of int} bits_stream 
@@ -24,7 +25,6 @@ function printManchester(canvas, bitsStream) {
                 drawBitOneManchester(canvas, coordinates, "alternative", counter);
             }
             else {
-
                 drawBitOneManchester(canvas, coordinates, "normal", counter);
             }
 
@@ -112,10 +112,8 @@ function drawBitOneManchester(canvas, coordinates, flag, counter) {
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-        printDottedLine(canvas, getDottedCoordinates(coordinates));
     }
-    else if (flag == "alternative") {
+    else {
 
         coordinates[1] += 20;
         coordinates[2] += 20;
@@ -130,19 +128,17 @@ function drawBitOneManchester(canvas, coordinates, flag, counter) {
 
 
         coordinates[1] -= 20;
-        coordinates[2] += 20;
+        coordinates[2] += 20;                
 
         drawLine(canvas, coordinates);
+    }    
 
-        printDottedLine(canvas, getDottedCoordinates(coordinates));
-    }
+    printDottedLine(canvas, getDottedCoordinates(coordinates));
 }
 
 
 /* Imprime las líneas del bit 0 correspondiente a Manchester. */
-function drawBitZeroManchester(canvas, coordinates, flag) {
-
-    let dottedCoordinates;
+function drawBitZeroManchester(canvas, coordinates, flag) {    
 
     if (flag == "normal") {
 
@@ -162,14 +158,8 @@ function drawBitZeroManchester(canvas, coordinates, flag) {
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
     }
-    else if (flag == "alternative") {
+    else {
 
         coordinates[1] -= 20;
         coordinates[2] += 20;
@@ -187,13 +177,12 @@ function drawBitZeroManchester(canvas, coordinates, flag) {
         coordinates[1] += 20;
 
         drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
     }
+
+    let dottedCoordinates = getDottedCoordinates(coordinates);
+
+    dottedCoordinates[1] -= 20;
+    dottedCoordinates[3] -= 20;
 
     printDottedLine(canvas, dottedCoordinates);
 }

@@ -8,7 +8,8 @@ Fecha: 12-Septiembre-2019.
 
 
 /**
- * Impresión de la señal binaria para NRZ-L.
+ * Imprime las líneas correspondientes a los
+ * valores 1 o 0 de la codificación "NRZ-L".
  * 
  * @param {object} canvas 
  * @param {array of int} bitsStream 
@@ -24,74 +25,33 @@ function printNrzl(canvas, bitsStream) {
         if (bitsStream[counter] === 1) {
 
             if ((counter - 1) >= 0 && bitsStream[counter - 1] === 0) {
-
-                drawBitOneNrzl(canvas, coordinates, "alternative");
-
-                printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "1" en canvas.
+                drawBitOneNrzl(canvas, coordinates, "alternative", counter);                
             }
             else {
-
-                drawBitOneNrzl(canvas, coordinates, "normal");
-
-                printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "1" en canvas.
-            }
-
+                drawBitOneNrzl(canvas, coordinates, "normal", counter);                
+            }            
 
             if (counter != (bitsStream.length - 1) && bitsStream[counter + 1] === 0) {
-                drawLineDown(canvas, coordinates, "nrzl");
+                drawLineUp(canvas, coordinates, "nrzl");
             }
+
+            printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "1" en canvas.
         }
         else {
 
             if ((counter - 1) >= 0 && bitsStream[counter - 1] === 1) {
-
-                drawBitZeroNrzl(canvas, coordinates, "alternative", counter);
-
-                printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "0" en canvas.
+                drawBitZeroNrzl(canvas, coordinates, "alternative");                
             }
             else {
+                drawBitZeroNrzl(canvas, coordinates, "normal");                
+            }            
 
-                drawBitZeroNrzl(canvas, coordinates, "normal", counter);
-
-                printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "0" en canvas.
+            if (counter != (bitsStream.length - 1) && bitsStream[counter + 1] === 1) {                
+                drawLineDown(canvas, coordinates, "nrzl");
             }
 
-            if (counter != (bitsStream.length - 1) && bitsStream[counter + 1] === 1) {
-                drawLineUp(canvas, coordinates, "nrzl");
-            }
+            printBitNrzl(canvas, bitsStream[counter], counter); //Imprime el número "0" en canvas.
         }
-    }
-}
-
-
-/**
- * Calcula las coordenadas para dibujar
- * la línea del bit 1.
- * 
- * @param {object} canvas 
- * @param {array of int} coordinates 
- * @param {string} flag 
- */
-function drawBitOneNrzl(canvas, coordinates, flag) {
-
-    if (flag == "normal") {
-
-        coordinates[0] += 30;
-        coordinates[2] += 30;
-
-        drawLine(canvas, coordinates);
-
-        printDottedLine(canvas, getDottedCoordinates(coordinates));
-    }
-    else if (flag == "alternative") {
-
-        coordinates[1] -= 30;
-        coordinates[2] += 30;
-
-        drawLine(canvas, coordinates);
-
-        printDottedLine(canvas, getDottedCoordinates(coordinates));
-
     }
 }
 
@@ -107,7 +67,7 @@ function drawBitOneNrzl(canvas, coordinates, flag) {
  * @param {string} flag 
  * @param {int} counter
  */
-function drawBitZeroNrzl(canvas, coordinates, flag, counter) {
+function drawBitOneNrzl(canvas, coordinates, flag, counter) {    
 
     if (flag == "normal") {
 
@@ -118,44 +78,53 @@ function drawBitZeroNrzl(canvas, coordinates, flag, counter) {
         }
 
         coordinates[0] += 30;
-        coordinates[2] += 30;
-
-        drawLine(canvas, coordinates);
-
-        let example = [];
-
-        example.push(coordinates[2]);
-        example.push(coordinates[3]);
-        example.push(coordinates[2]);
-        example.push(coordinates[3]);
-
-        example[1] -= 30;
-        example[3] -= 30;
-
-        printDottedLine(canvas, example);
-
+        coordinates[2] += 30;        
     }
-    else if (flag == "alternative") {
+    else {
 
         coordinates[1] += 30;
         coordinates[2] += 30;
+    }
+    
+    drawLine(canvas, coordinates);      
 
-        drawLine(canvas, coordinates);
 
-        let example = [];
+    let dottedCoordinates = getDottedCoordinates(coordinates);
 
-        example.push(coordinates[2]);
-        example.push(coordinates[3]);
-        example.push(coordinates[2]);
-        example.push(coordinates[3]);
+    dottedCoordinates[1] -= 30;
+    dottedCoordinates[3] -= 30;  
 
-        example[1] -= 30;
-        example[3] -= 30;
+    printDottedLine(canvas, dottedCoordinates);
+}
 
-        printDottedLine(canvas, example);
+
+
+/**
+ * Calcula las coordenadas para dibujar
+ * la línea del bit 1.
+ * 
+ * @param {object} canvas 
+ * @param {array of int} coordinates 
+ * @param {string} flag 
+ */
+function drawBitZeroNrzl(canvas, coordinates, flag) {
+
+    if (flag == "normal") {
+
+        coordinates[0] += 30;
+        coordinates[2] += 30;        
+    }
+    else {
+
+        coordinates[1] -= 30;
+        coordinates[2] += 30;        
     }
 
+    drawLine(canvas, coordinates);
+
+    printDottedLine(canvas, getDottedCoordinates(coordinates));
 }
+
 
 
 /**

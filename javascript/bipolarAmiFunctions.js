@@ -8,7 +8,7 @@ Fecha: 13-Septiembre-2019.
 
 /**
  * Imprime las líneas correspondientes a los
- * valores 1 o 0 de la codificación bipolar-AMI.
+ * valores 1 o 0 de la codificación "Bipolar-AMI".
  * 
  * @param {object} canvas 
  * @param {array int} bits_stream 
@@ -16,7 +16,8 @@ Fecha: 13-Septiembre-2019.
 function printBipolarAmi(canvas, bitsStream) {
 
     //let coordinates = new Array(30, 40, 50, 40);
-    let coordinates = new Array(30, 50, 50, 50);
+
+    let coordinates = new Array(30, 60, 50, 60);
 
     let flag = 1;
 
@@ -222,22 +223,12 @@ function drawBitOneBami(canvas, coordinates, flag) {
  */
 function drawBitZeroBami(canvas, coordinates, flag) {
 
-    let dottedCoordinates;
-
     if (flag === 1) {
 
         coordinates[1] -= 20;
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
-
-        printDottedLine(canvas, dottedCoordinates);
     }
     else if (flag === -1) {
 
@@ -245,14 +236,6 @@ function drawBitZeroBami(canvas, coordinates, flag) {
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
-
-        printDottedLine(canvas, dottedCoordinates);
     }
     else {
 
@@ -260,16 +243,17 @@ function drawBitZeroBami(canvas, coordinates, flag) {
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
-
-        printDottedLine(canvas, dottedCoordinates);
     }
+
+
+    let dottedCoordinates = getDottedCoordinates(coordinates);
+
+    dottedCoordinates[1] -= 20;
+    dottedCoordinates[3] -= 20;
+
+    printDottedLine(canvas, dottedCoordinates);
 }
+
 
 /* MODIFICAR LÓGICA */
 function printBitBami(canvas, bit, counter, firstBit) {

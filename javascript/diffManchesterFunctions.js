@@ -6,9 +6,16 @@ Fecha: 13-Septiembre-2019.
 */
 
 
+/**
+ * Imprime las líneas correspondientes a los
+ * valores 1 o 0 de la codificación "Differential Manchester".
+ * 
+ * @param {*} canvas 
+ * @param {*} bitsStream 
+ */
 function printDiffManchester(canvas, bitsStream) {
 
-    let coordinates = new Array(30, 20, 50, 20);
+    let coordinates = new Array(30, 45, 50, 45);
 
     let flag = 1; //Determina la trayectoria del bit. Si es uno, es normal _|¯; si es -1, es alternativo ¯|_.
 
@@ -119,7 +126,6 @@ function drawBitOneZeroDiffManchester(canvas, coordinates) {
 
 
     printDottedLine(canvas, getDottedCoordinates(coordinates));
-
 }
 
 
@@ -147,7 +153,7 @@ function drawBitOneDiffManchester(canvas, coordinates, flag) {
 
         printDottedLine(canvas, getDottedCoordinates(coordinates));
     }
-    else if (flag === -1) {
+    else {
 
         coordinates[0] += 20;
         coordinates[2] += 20;
@@ -176,9 +182,10 @@ function drawBitOneDiffManchester(canvas, coordinates, flag) {
     }
 }
 
-function drawBitZeroDiffManchester(canvas, coordinates, flag) {
 
-    let dottedCoordinates;
+
+
+function drawBitZeroDiffManchester(canvas, coordinates, flag) {    
 
     if (flag == "normal") {
 
@@ -197,15 +204,9 @@ function drawBitZeroDiffManchester(canvas, coordinates, flag) {
         coordinates[1] += 20;
         coordinates[2] += 20;
 
-        drawLine(canvas, coordinates);
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
+        drawLine(canvas, coordinates);;
     }
-    else if (flag == "alternative") {
+    else {
 
         coordinates[0] += 20;
         coordinates[2] += 20;
@@ -223,14 +224,13 @@ function drawBitZeroDiffManchester(canvas, coordinates, flag) {
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
-
-
-
-        dottedCoordinates = getDottedCoordinates(coordinates);
-
-        dottedCoordinates[1] -= 20;
-        dottedCoordinates[3] -= 20;
     }
+
+
+    let dottedCoordinates = getDottedCoordinates(coordinates);
+
+    dottedCoordinates[1] -= 20;
+    dottedCoordinates[3] -= 20;
 
     printDottedLine(canvas, dottedCoordinates);
 }
