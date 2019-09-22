@@ -5,29 +5,66 @@ Fecha: 12-Septiembre-2019.
 
 */
 
-body {
-    background: #FFFFFF !important;
-}
 
-#btnSubmit:hover {
-        
+.btn-submit-data:hover {
     background: white !important;
-    color: #22D69D !important;
-    border: 1px solid #22D69D !important;    
+    color: #00CCFF !important;
+    border: 1px solid #00CCFF !important;    
 }
 
 .wrongInput {
-
     background: #fff6f6 !important;
     border-color: #e0b4b4 !important;
     color: #9f3a38 !important;
 }
 
 
-.styleCanvas {
-
-    margin-top: 20px;
-    margin-left: -20px;
-    width: 100%;
+canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
+
+
+.header-text {
+    /*background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); min-height: 350px;*/
+    height:100vh !important;
+    margin:0 !important;
+    /*background-image: linear-gradient(135deg, #51a595 0%, #3fcfa2 100%) !important;*/
+    background-image: linear-gradient(135deg, #51a595 0%, #00CCFF 100%) !important;
+}
+
+
+
+
+.btn-download {
+    /*background: #50E3C2 !important;*/
+    background: #00CCFF !important;
+}
+
+
+.icon-download {
+    color: white !important;
+}
+
+
+.footer.segment {
+    /*background-image: linear-gradient(to top, #dfe9f3 0%, white 100%) !important;*/
+    background: white !important;
+    width: 100% !important;
+}
+
+@media(min-width: 580px) {
+
+    #valueEncode {
+        width: 500px !important;
+    }
+}
+
+@media(max-width: 579px) {
+
+    #valueEncode {
+        width: 200px !important;
+    }
+}
+
 

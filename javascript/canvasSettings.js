@@ -9,7 +9,7 @@ Fecha: 14-Septiembre-2019.
 
 /**
  * Calcula las coordenadas para dibujar
- * una línea hacia abajo, dependiendo del
+ * una línea hacia abajo del bit, dependiendo del
  * método de codificación de la señal.
  * 
  * @param {object} canvas
@@ -23,18 +23,23 @@ function drawLineDown(canvas, coordinates, method) {
         case "nrzl":
             coordinates[0] += 30;
             coordinates[3] += 30;
-            break;
+        break;
 
         case "manchester":
         case "diffmanchester":
             coordinates[0] += 20;
             coordinates[3] += 20;
-            break;
+        break;
 
         case "bami":
+            coordinates[0] += 30;
+            coordinates[3] += 20;
+        break;
+
+        case "bamiDown":
             coordinates[0] += 20;
             coordinates[3] += 20;
-            break;
+        break;
     }
 
     drawLine(canvas, coordinates);
@@ -43,32 +48,42 @@ function drawLineDown(canvas, coordinates, method) {
 
 /**
  * Calcula las coordenadas para dibujar
- * una línea hacia arriba, dependiendo del
- * método de codificación de la señal.
+ * una línea hacia arriba del bit, dependiendo
+ * del método de codificación de la señal.
  * 
  * @param {object} canvas 
  * @param {array of int} coordinates 
  * @param {string} method 
  */
-function drawLineUp(canvas, coordinates, method) {
+function drawLineUp(canvas, coordinates, method) {    
 
     switch (method) {
 
         case "nrzl":
             coordinates[0] += 30;
             coordinates[3] -= 30;
-            break;
+        break;
 
         case "manchester":
         case "diffmanchester":
             coordinates[0] += 20;
             coordinates[3] -= 20;
-            break;
+        break;        
 
         case "bami":
             coordinates[0] += 20;
             coordinates[3] -= 20;
-            break;
+        break;
+
+        case "bamiUpLarge":
+            coordinates[0] += 30;
+            coordinates[3] -= 20;
+        break;
+        
+        case "bamiUpToLarge":
+            coordinates[0] += 40;
+            coordinates[3] -= 20;
+        break;
     }
 
     drawLine(canvas, coordinates);
@@ -95,9 +110,7 @@ function drawLine(canvas, coordinates) {
 
     canvas.lineWidth = 2;
 
-    canvas.stroke();
-
-    //element.closePath();
+    canvas.stroke();    
 }
 
 
@@ -129,7 +142,38 @@ function printDottedLine(canvas, coordinates) {
 
 
 
-function getDottedCoordinates(coordinates) {
+/**
+ * Obtiene las coordendas del punto P1 de
+ * canvas y las asigna dos veces en un arreglo,
+ * para después regresar el arreglo.
+ * 
+ * @param {array of int} coordinates 
+ * 
+ * @return {array of int}
+ */
+function getDottedCoordinatesP1(coordinates) {
+    
+    let dottedCoordinates = [];
+    
+    dottedCoordinates.push(coordinates[0]);
+    dottedCoordinates.push(coordinates[1]);
+    dottedCoordinates.push(coordinates[0]);
+    dottedCoordinates.push(coordinates[1]);
+    
+    return dottedCoordinates;
+}
+
+
+/**
+ * Obtiene las coordendas del punto P2 de
+ * canvas y las asigna dos veces en un arreglo,
+ * para después regresar el arreglo.
+ * 
+ * @param {array of int} coordinates 
+ * 
+ * @return {array of int}
+ */
+function getDottedCoordinatesP2(coordinates) {
 
     let dottedCoordinates = [];
 
@@ -161,19 +205,19 @@ function iterateCoordinateX(coordinateX, total, method) {
 
             case "nrzl":
                 coordinateX += 30;
-                break;
+            break;
 
             case "manchester":
                 coordinateX += 40;
-                break;
+            break;
 
             case "diffManchester":
                 coordinateX += 40;
-                break;
+            break;
 
             case "bami":
-                coordinateX += 20;
-                break;
+                coordinateX += 30;
+            break;
         }
     }
 
@@ -197,7 +241,8 @@ function drawDottedLine(canvas, coordinates) {
 
     canvas.lineTo(coordinates[2], coordinates[3]);
 
-    canvas.strokeStyle = "red";
+    //canvas.strokeStyle = "red";
+    canvas.strokeStyle = "#00CCFF";
 
     canvas.lineWidth = 1;
 

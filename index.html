@@ -1,74 +1,144 @@
-<!--
-
-Autor: Rubio Aguilar Joel Alejandro.
-Fecha: 8-Septiembre-2019.
-Actualización: 14-Septiembre-2019.
-
+<!-- 
+    Autor: Joel Alejandro Rubio Aguilar.
+    Fecha: 8-Septiembre-2019.
+    Actualización1: 14-Septiembre-2019.
+    Actualización2: 21-Septiembre-2019.
 -->
+
 <!DOCTYPE html>
 <html lang="es">
-    <head>        
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+    <head>    
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link rel="stylesheet" href="css/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">        
-        <title>Proyecto de telecomunicaciones</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">    
+        <title>Telecomunicaciones</title>
+
+        <style type="text/css">
+            
+            body {
+                background-color: #FFFFFF;
+            }
+
+            .main.container {
+                margin-top: 2em;
+            }
+
+            .main.menu {
+                margin-top: 4em;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+                transition:
+                    box-shadow 0.5s ease,
+                    padding 0.5s ease;
+            }
+
+            .main.menu .item img.logo {
+                margin-right: 1.5em;
+            }
+
+            .overlay {
+                float: left;
+                margin: 0em 3em 1em 0em;
+            }
+
+            .overlay .menu {
+                position: relative;
+                left: 0;
+                transition: left 0.5s ease;
+            }
+
+            .main.menu.fixed {
+                background-color: #FFFFFF;
+                border: 1px solid #DDD;
+                box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .overlay.fixed .menu {
+                left: 800px;
+            }
+
+            .text.container .left.floated.image {
+                margin: 2em 2em 2em -4em;
+            }
+
+            .text.container .right.floated.image {
+                margin: 2em -4em 2em 2em;
+            }
+
+            .ui.footer.segment {
+                margin: 5em 0em 0em;
+                padding: 5em 0em;
+            }  
+
+        </style>
+
     </head>
     <body>
 
-        
-        <div id="topMenu" class="ui mini menu stackable">            
-            <a class="item">
-                Proyecto para la codificación de señales binarias
-            </a>
+        <div class="ui inverted vertical masthead center aligned segment header-text">
+            <div class="ui main text container">
+                <h1 class="ui header centered" style="margin-top: 250px; font-size: 43px; color: white; font-weight: 600; line-height: 1;">Codificador de datos</h1>
+                <h2 class="ui inverted header" style="text-align: center; font-weight: normal; font-size: 16px; font-weight: 300; line-height: 1.6;">Proyecto de telecomunicaciones para la codificación de datos digitales a señales digitales</h2>
+            </div>
+        </div>
 
-            <div class="right menu" style="margin-right: 30px;">                
-                <div class="item">
-                    <a id="githubBtn" href="https://github.com/mrobotalderson/Proyecto-Telecomunicaciones" target="_blank">
-                        <button class="ui button" data-tooltip="Consultar proyecto en GitHub" data-position="bottom right">
-                            <i class="ui icon github"></i>
-                        </button>
-                    </a>
+        <div class="ui text container">
+            <p class="ui header" style="line-height: 1.6; margin-top: 50px; font-size: 16px; text-align: center; font-weight: normal;">
+                Proyecto de telecomunicaciones que muestra la codificación de datos digitales a señales
+                digitales tales como: NRZ-L, manchester, manchester diferencial y bipolar AMI.            
+            </p>
+            <p class="ui header" style="line-height: 1.6; margin-top: 50px; font-size: 16px; text-align: center; font-weight: normal;">
+                Muestra su representación en señales digitales y permite su descarga para formato png.
+            </p>        
+        </div>
+
+        <div class="ui inverted section divider"></div>
+
+        <!-- MENÚ Y FORMULARIO -->
+        <div class="ui borderless main menu">
+            <div class="ui text container">
+                <div class="header item" style="margin: auto;">                
+                    <form class="ui fluid form" id="formEncodingScroll">                                
+
+                        <div class="fields">                        
+
+                            <div class="field">
+                                <a href="https://github.com/mrobotalderson/Proyecto-Telecomunicaciones" target="_blank">
+                                    <button type="button" class="ui circular icon button" style="margin-top: 17px;" data-tooltip="Consultar en github" data-position="bottom left">
+                                        <i class="ui github icon"></i>
+                                    </button>
+                                </a>
+                            </div>
+
+                            <div class="field">
+                                <label style="text-align: center;">Codificar datos</label>
+                                <input type="text" name="valueEncode" id="valueEncode" placeholder="Ingrese los valores..." maxlength="19"
+                                    style="width: 100%; border-radius: 50px;">                                                    
+                                <br>
+                                <div id="errorMessage" class="ui basic red pointing label" style="display: none;"></div>                        
+                            </div>         
+                            
+                            <div class="field">
+                                <button type="submit" name="btnEncode" class="ui circular icon button btn-submit-data" id="btnSubmit"
+                                    style="background: #00CCFF; color: white; border: 1px solid #00CCFF; transition: 0.5s; margin-top: 16px;">
+                                    <i class="icon check"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    
+                    </form>                
                 </div>
             </div>
         </div>
+        <!-- MENÚ Y FORMULARIO -->
 
-        <div class="ui middle aligned center aligned grid">
-        
-            <div class="column" style="margin-top: 5%;">
-    
-                <h1>Codificación de bits</h1>
-                        
 
-                <form method="POST" class="ui large form" id="formEncoding">
-        
-                    <div class="field">
-
-                        <input type="text" name="valueEncode" id="valueEncode" placeholder="Ingrese los valores..." maxlength="19"
-                            style="width: 50%;">
-            
-                        <br>
-                        <div id="errorMessage" class="ui basic red pointing label" style="display: none;">
-                            Ingrese al menos un bit.
-                        </div>
-                        
-                    </div>                                        
-        
-                    <button type="submit" name="btnEncode" class="ui button" id="btnSubmit"
-                        style="background: #22D69D; color: white; border: 1px solid #22D69D; transition: 0.5s; margin-bottom: 40px; ">
-                        Codificar
-                    </button>
-        
-                </form>                        
-
-            </div>
-
-        </div>
-
-        <div class="ui container">            
-
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="ui container">
             <table id="tableBits" class="ui table celled  selectable stackable" style="width: auto; margin: auto; display: none;">
                 <thead>
                     <tr>
@@ -86,8 +156,9 @@ Actualización: 14-Septiembre-2019.
                         </td>
                         <td class="center aligned">
                             <a download="nrzlEncoding.png" id="downloadNrzl">
-                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">                                
-                                    <i class="ui icon download"></i>                                
+                                <button class="circular ui icon button btn-download" data-tooltip="Guardar como png."
+                                    data-position="bottom center">
+                                    <i class="ui icon download icon-download"></i>
                                 </button>
                             </a>
                         </td>
@@ -100,8 +171,9 @@ Actualización: 14-Septiembre-2019.
                         </td>
                         <td class="center aligned">
                             <a download="manchesterEncoding.png" id="downloadManchester">
-                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
-                                    <i class="ui icon download"></i>
+                                <button class="circular ui icon button btn-download" data-tooltip="Guardar como png."
+                                    data-position="bottom center">
+                                    <i class="ui icon download icon-download"></i>
                                 </button>
                             </a>
                         </td>
@@ -114,8 +186,9 @@ Actualización: 14-Septiembre-2019.
                         </td>
                         <td class="center aligned">
                             <a download="diffManchesterEncoding.png" id="downloadDiffManchester">
-                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
-                                    <i class="ui icon download"></i>
+                                <button class="circular ui icon button btn-download" data-tooltip="Guardar como png."
+                                    data-position="bottom center">
+                                    <i class="ui icon download icon-download"></i>
                                 </button>
                             </a>
                         </td>
@@ -128,33 +201,50 @@ Actualización: 14-Septiembre-2019.
                         </td>
                         <td class="center aligned">
                             <a download="bipolarAmiEncoding.png" id="downloadBipolarAmi">
-                                <button class="circular ui icon button" data-tooltip="Guardar como png." data-position="bottom center">
-                                    <i class="ui icon download"></i>
+                                <button class="circular ui icon button btn-download" data-tooltip="Guardar como png."
+                                    data-position="bottom center">
+                                    <i class="ui icon download icon-download"></i>
                                 </button>
                             </a>
                         </td>
                     </tr>
                 </tbody>
-            </table>
+            </table>              
+        </main>
+        <!-- CONTENIDO PRINCIPAL -->
+        
+
+        <!-- FOOTER -->
+        <div class="ui inverted vertical footer segment">
+
+            <div class="ui inverted section divider"></div>
+
+            <div class="ui center aligned container">
+                <div class="ui stackable inverted divided grid">
+
+                    <div class="sixteen wide column">
+                        <h4 class="ui header">Codificación de datos digitales a señales digitales</h4>
+                        <p style="color: black;">Proyecto de telecomunicaciones realizado con <i class="icon heartbeat "></i>.</p>
+                    </div>
+                </div>
+
+                <div class="ui inverted section divider"></div>
+
+                <p style="color: black;">Realizado por: Joel Rubio &copy; 2019</p>
+            </div>
         </div>
+        <!--FOOTER -->
 
-        <br><br>
 
-        <footer>
-            <h5 class="ui header" style="text-align: center">Creado por: Joel Rubio.</h5>            
-        </footer>
-
-    </body>
-    
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>            
-    <script type="text/javascript" src="javascript/canvasSettings.js"></script>
-    <script type="text/javascript" src="javascript/canvasToImage.js"></script>
-    <script type="text/javascript" src="javascript/nrzlFunctions.js"></script>
-    <script type="text/javascript" src="javascript/manchesterFunctions.js"></script>
-    <script type="text/javascript" src="javascript/diffManchesterFunctions.js"></script>
-    <script type="text/javascript" src="javascript/bipolarAmiFunctions.js"></script>
-    <script type="text/javascript" src="javascript/main.js"></script>    
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+        <script type="text/javascript" src="javascript/canvasSettings.js"></script>
+        <script type="text/javascript" src="javascript/canvasToImage.js"></script>
+        <script type="text/javascript" src="javascript/nrzlFunctions.js"></script>
+        <script type="text/javascript" src="javascript/manchesterFunctions.js"></script>
+        <script type="text/javascript" src="javascript/diffManchesterFunctions.js"></script>
+        <script type="text/javascript" src="javascript/bipolarAmiFunctions_test.js"></script>
+        <script type="text/javascript" src="javascript/main.js"></script>
 
     </body>
 </html>
