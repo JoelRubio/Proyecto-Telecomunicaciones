@@ -6,13 +6,21 @@ Fecha: 12-Septiembre-2019.
 */
 
 
-.btn-submit-data:hover {
+/* Fuentes */
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+
+
+.btn-submit-data:hover {    
+
     background: white !important;
     color: #00CCFF !important;
     border: 1px solid #00CCFF !important;    
 }
 
 .wrongInput {
+
     background: #fff6f6 !important;
     border-color: #e0b4b4 !important;
     color: #9f3a38 !important;
@@ -20,51 +28,180 @@ Fecha: 12-Septiembre-2019.
 
 
 canvas {
+
     width: 100% !important;
     height: 100% !important;
 }
 
 
-.header-text {
+.text-header-container {
+
     /*background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%); min-height: 350px;*/
+    /*background-image: linear-gradient(135deg, #51a595 0%, #3fcfa2 100%) !important;*/
+    /*background-image: linear-gradient(135deg, #51a595 0%, #00CCFF 100%) !important;*/     
     height:100vh !important;
     margin:0 !important;
-    /*background-image: linear-gradient(135deg, #51a595 0%, #3fcfa2 100%) !important;*/
-    background-image: linear-gradient(135deg, #51a595 0%, #00CCFF 100%) !important;
+    background-image: url(shahadat-shemul-BfrQnKBulYQ-unsplash.jpg) !important;  
+    background-position: center center !important;  
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    background-color: #464646 !important;
 }
 
 
+.text-header1 {
 
+    font-style: normal !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 40px !important; 
+    font-weight: 700 !important; 
+    font-stretch: normal !important;
+    letter-spacing: 3px !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    color: white !important;     
+    margin-top: 250px !important;         
+}
+
+.text-header2 {
+    
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important; 
+    font-weight: 200 !important; 
+    /*font-weight: normal !important; */
+    line-height: 1.6 !important;
+    text-align: center !important; 
+}
+
+
+.text-header-description {
+
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 200 !important;
+    line-height: 1.17 !important;
+    text-align: center;
+    color: #000;
+    margin-top: 50px !important;
+}
+
+
+.text-description {
+
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 16px !important; 
+    font-weight: 400 !important;
+    line-height: 1.9 !important;
+    letter-spacing: normal !important; 
+    text-align: center !important; 
+    margin-top: 50px !important; 
+}
+
+.text-footer {
+    
+    font-weight: 500 !important;
+    line-height: 1.5 !important;
+    color: black !important;
+}
 
 .btn-download {
+
     /*background: #50E3C2 !important;*/
     background: #00CCFF !important;
 }
 
 
 .icon-download {
+
     color: white !important;
 }
 
 
 .footer.segment {
+
     /*background-image: linear-gradient(to top, #dfe9f3 0%, white 100%) !important;*/
-    background: white !important;
+    background: #FAFAFA !important;
     width: 100% !important;
 }
 
-@media(min-width: 580px) {
+
+.github-btn-footer {
+
+    display: none !important;
+}
+
+
+
+@media screen and (max-width: 349px) {
+
+    #valueEncode {
+
+        width: 50px !important;        
+    }
+
+    .github-btn {
+
+        display: none !important;
+    }
+
+    .github-btn-footer {
+
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .text-header-description {
+        font-size: 30px !important;
+    }
+}
+
+
+@media screen and (min-width: 580px) {
+
+    #valueEncode {
+        width: 400px !important;    
+    }
+}
+
+@media screen and (min-width: 1200px) {
 
     #valueEncode {
         width: 500px !important;
     }
 }
 
-@media(max-width: 579px) {
+@media screen and (max-width: 579px) {
 
     #valueEncode {
         width: 200px !important;
     }
 }
+
+
+@media screen and (max-width: 640px) {
+
+    .text-header-description {
+        font-size: 36px !important;
+    }
+
+    .text-header1 {
+
+        font-size: 37px !important;
+        margin-top: 200px !important;
+    }
+}
+
+@media screen and (min-width: 642px) {
+
+    .text-header-description {
+        
+        margin-top: 50px !important;
+    }
+}
+
+
 
 

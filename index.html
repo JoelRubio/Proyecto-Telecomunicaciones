@@ -12,7 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">        
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">            
         <title>Telecomunicaciones</title>
 
         <style type="text/css">
@@ -69,7 +69,7 @@
             }
 
             .ui.footer.segment {
-                margin: 5em 0em 0em;
+                margin: 6em 0em 0em;
                 padding: 5em 0em;
             }  
 
@@ -78,19 +78,20 @@
     </head>
     <body>
 
-        <div class="ui inverted vertical masthead center aligned segment header-text">
+        <div class="ui inverted vertical masthead center aligned segment text-header-container">
             <div class="ui main text container">
-                <h1 class="ui header centered" style="margin-top: 250px; font-size: 43px; color: white; font-weight: 600; line-height: 1;">Codificador de datos</h1>
-                <h2 class="ui inverted header" style="text-align: center; font-weight: normal; font-size: 16px; font-weight: 300; line-height: 1.6;">Proyecto de telecomunicaciones para la codificación de datos digitales a señales digitales</h2>
+                <h2 class="ui header text-header1">Codificador de Datos</h1>
+                <h3 class="ui inverted header text-header2">Proyecto de telecomunicaciones para la codificación de datos digitales a señales digitales</h2>
             </div>
         </div>
 
         <div class="ui text container">
-            <p class="ui header" style="line-height: 1.6; margin-top: 50px; font-size: 16px; text-align: center; font-weight: normal;">
-                Proyecto de telecomunicaciones que muestra la codificación de datos digitales a señales
+            <h1 class="ui header text-header-description">¿Qué hace el proyecto?</h1>
+            <p class="ui header text-description">
+                El proyecto de telecomunicaciones muestra la codificación de datos digitales a señales
                 digitales tales como: NRZ-L, manchester, manchester diferencial y bipolar AMI.            
             </p>
-            <p class="ui header" style="line-height: 1.6; margin-top: 50px; font-size: 16px; text-align: center; font-weight: normal;">
+            <p class="ui header text-description">
                 Muestra su representación en señales digitales y permite su descarga para formato png.
             </p>        
         </div>
@@ -107,7 +108,7 @@
 
                             <div class="field">
                                 <a href="https://github.com/mrobotalderson/Proyecto-Telecomunicaciones" target="_blank">
-                                    <button type="button" class="ui circular icon button" style="margin-top: 17px;" data-tooltip="Consultar en github" data-position="bottom left">
+                                    <button type="button" class="ui circular icon button github-btn" style="margin-top: 17px;" data-tooltip="Consultar en github." data-position="bottom left">
                                         <i class="ui github icon"></i>
                                     </button>
                                 </a>
@@ -216,21 +217,31 @@
 
         <!-- FOOTER -->
         <div class="ui inverted vertical footer segment">
-
-            <div class="ui inverted section divider"></div>
-
+            
             <div class="ui center aligned container">
                 <div class="ui stackable inverted divided grid">
 
-                    <div class="sixteen wide column">
-                        <h4 class="ui header">Codificación de datos digitales a señales digitales</h4>
-                        <p style="color: black;">Proyecto de telecomunicaciones realizado con <i class="icon heartbeat "></i>.</p>
+                    <div class="sixteen wide column">                        
+                        <h4 class="text-footer">Proyecto de telecomunicaciones realizado con <i class="icon heartbeat "></i>.</h4>
+                        <h4 class="text-footer">Desarrollado por: Joel Rubio.</h4>
+                        
+                        <a href="https://github.com/mrobotalderson/Proyecto-Telecomunicaciones" target="_blank">
+                            <button type="button" class="ui circular icon button github-btn-footer"
+                                data-tooltip="Consultar en github." data-position="bottom left">
+                                <i class="ui github icon"></i>
+                            </button>
+                        </a>
+                    
                     </div>
                 </div>
 
                 <div class="ui inverted section divider"></div>
 
-                <p style="color: black;">Realizado por: Joel Rubio &copy; 2019</p>
+                <div class="ui horizontal small divided link list">
+                    <a class="item" href="https://github.com/mrobotalderson/Proyecto-Telecomunicaciones/blob/master/LICENSE.md" target="_blank">
+                        Free & Open Source (MIT)
+                    </a>
+                </div>
             </div>
         </div>
         <!--FOOTER -->
