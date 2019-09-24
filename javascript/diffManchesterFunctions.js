@@ -2,6 +2,7 @@
 
 Autor: Joel Alejandro Rubio Aguilar.
 Fecha: 13-Septiembre-2019.
+Actualización: 23-Septiembre-2019.
 
 */
 
@@ -17,62 +18,79 @@ function printDiffManchester(canvas, bitsStream) {
 
     let coordinates = new Array(30, 45, 50, 45);
 
-    let flag = 1; //Determina la trayectoria del bit. Si es uno, es normal _|¯; si es -1, es alternativo ¯|_.
+    let flag_one  = 1; //Determina la trayectoria del bit uno. 
+    let flag_zero = 1; //Determina la trayectoria del bit cero.
 
     for (let counter = 0; counter < bitsStream.length; counter++) {
-
-
-        /* Si el bit es el primero, entonces dibuja una línea
-         * hacia abajo y el bit de inicio, colocando la bandera
-         * en negativo.
-        */
-        if (counter === 0) {
-
-            drawLineDown(canvas, coordinates, "diffmanchester");
-
-            drawBitOneZeroDiffManchester(canvas, coordinates);
-
-            flag = -1;      
-            
-            continue;
-        }
-
+        
  
         if (bitsStream[counter] === 1) {
 
+            //CORRECTO
+            if (counter === 0) {
+
+                drawBitOneInitialDiffManchester(canvas, coordinates);
+
+                if (counter != bitsStream.length && bitsStream[counter + 1] === 0) {
+
+                    drawLineUp(canvas, coordinates, "diffmanchester");
+                }
+
+                /* Dibuja el bit uno en canvas. */
+                printBitDiffManchester(canvas, bitsStream[counter], counter);                
+
+                continue;
+            }
 
             /* Si el bit anterior es un uno con bandera positiva o es un
              * bit cero y no es el segundo bit, entonces dibuja el bit uno normal.
              * Después dibuja, literalmente, el bit uno y coloca la bandera en negativo.
              * 
             */
-            if ((bitsStream[counter - 1] === 1 && flag === 1) || (bitsStream[counter - 1] === 0 && counter !== 1)) {
 
-                drawBitOneDiffManchester(canvas, coordinates, flag);                
+            if (bitsStream[counter - 1] === 0 && flag_one === -1) {
+
+                drawBitOneDiffManchester(canvas, coordinates, "alternative");
+
+                flag_one = 1;
+
+                if (counter != bitsStream.length && bitsStream[counter + 1] === 0) {
+
+                    drawLineUp(canvas, coordinates, "diffmanchester");                    
+                }
 
                 printBitDiffManchester(canvas, bitsStream[counter], counter);
 
-                flag = -1;
-
                 continue;
             }
+            
 
+            
+            if ((bitsStream[counter - 1] === 1 && flag_one === 1) || (bitsStream[counter - 1] === 0 && flag_zero === 1)) {                
 
-            /* Si el bit anterior es un uno con bandera negativa o es un bit cero,
-             * entonces dibuja el bit uno alternativo. Luego, verifica si el siguiente
-             * bit es cero, si es así, dibuja una línea hacia abajo. Finalmente cambia
-             * la bandera a positivo.
-             * 
-            */
-            if ((bitsStream[counter - 1] === 1 && flag === -1) || bitsStream[counter - 1] === 0) {
+                drawBitOneDiffManchester(canvas, coordinates, flag_one);                                
 
-                drawBitOneDiffManchester(canvas, coordinates, flag);
+                if (counter != bitsStream.length && bitsStream[counter + 1] == 0) {
+
+                    drawLineDown(canvas, coordinates, "diffmanchester");
+
+                    flag_zero = -1;
+                }                
+                
+                flag_one = -1;                                                             
+            }                                        
+            else if ((bitsStream[counter - 1] === 1 && flag_one === -1) || (bitsStream[counter - 1] === 0 && flag_zero === -1)) {                
+
+                drawBitOneDiffManchester(canvas, coordinates, flag_one);
+
+                flag_one = 1;                    
 
                 if (counter != (bitsStream.length - 1) && bitsStream[counter + 1] === 0) {
-                    drawLineUp(canvas, coordinates, "diffmanchester");
-                }
 
-                flag = 1;
+                    drawLineUp(canvas, coordinates, "diffmanchester");
+
+                    flag_zero = 1;
+                }                                                                
             }
 
             /* Dibuja el bit uno en canvas. */
@@ -82,63 +100,77 @@ function printDiffManchester(canvas, bitsStream) {
         else {
 
 
+            /* Si el bit es el primero, entonces dibuja una línea
+            *  hacia abajo y el bit de inicio, colocando la bandera
+            *  en negativo.
+            */
+            if (counter === 0) {
+
+                drawLineDown(canvas, coordinates, "diffmanchester");
+
+                drawBitZeroInitialDiffManchester(canvas, coordinates);                                
+
+                flag_one = -1;
+
+                if (counter != bitsStream.length && bitsStream[counter + 1] === 0) {
+
+                    drawLineDown(canvas, coordinates, "diffmanchester");
+
+                    flag_zero = -1;
+                }
+
+                printBitDiffManchester(canvas, bitsStream[counter], counter);
+
+                continue;
+            }
+
+
+
             /* Si el bit anterior es un cero y no es el segundo bit, entonces
              * dibuja una línea hacia arriba.
              *
              * En caso contrario, si el bit anterior es cero y es el segundo bit, 
              * entonces dibuja el bit cero alternativo. Luego dibuja, literalmente, 
              * el bit cero y cambia la bandera a positivo.
-            */
-            if ((counter - 1) >= 0 && (bitsStream[counter - 1] === 0 && counter !== 1)) {
-                drawLineUp(canvas, coordinates, "diffmanchester");
-            }
-            else if ((counter - 1) >= 0 && (bitsStream[counter - 1] === 0 && counter === 1)) {
+            */            
 
-                drawBitZeroDiffManchester(canvas, coordinates, "alternative");                
-                
-                printBitDiffManchester(canvas, bitsStream[counter], counter);
-
-                flag = 1;
-
-                continue;
-            }
-
-
-            /* Si el bit anterior es uno y la bandera es negativa, entonces
-            *  dibuja el bit zero alternativo y cambia la bandera a positivo.
-            *  
-            *  En caso contrario, si el bit anterior es cero o la bandera es positiva, 
-            *  entonces dibuja el bit cero normal. Si el siguiente bit es uno cambia la 
-            *  bandera a positivo, si no, la cambia a negativo.
-            */
-            if ((counter - 1) >= 0 && (bitsStream[counter - 1] === 1 && flag === -1)) {
-
-                drawBitZeroDiffManchester(canvas, coordinates, "alternative");
-
-                flag = 1;
-            }
-            else if ((counter - 1) >= 0 && (bitsStream[counter - 1] === 0 || flag === 1)) {
+            if ((bitsStream[counter - 1] === 0 && flag_zero === 1) || (bitsStream[counter - 1] === 1 && flag_one === 1) ){
 
                 drawBitZeroDiffManchester(canvas, coordinates, "normal");
 
-                if (counter != (bitsStream.length - 1) && bitsStream[counter + 1] === 1) {
-                    flag = 1;
+                if (counter != bitsStream.length && bitsStream[counter + 1] === 0) {
+
+                    drawLineUp(canvas, coordinates, "diffmanchester");                                   
+                }            
+
+                flag_zero = 1; //Por esta variable pasó el error de 010101011
+
+                flag_one = 1;                
+            }
+            else if ((bitsStream[counter - 1] === 0 && flag_zero === -1) || (bitsStream[counter - 1] === 1 && flag_one === -1)) {
+
+                drawBitZeroDiffManchester(canvas, coordinates, "alternative");
+
+                if (counter != bitsStream.length && bitsStream[counter + 1] === 0) {
+
+                    drawLineDown(canvas, coordinates, "diffmanchester");                    
                 }
-                else {
-                    flag = -1;
-                }
+
+                flag_zero = -1; //Por esta variable pasó el error de 010101011
+
+                flag_one = -1;                
             }
             
             /* Dibuja el bit cero en canvas. */
             printBitDiffManchester(canvas, bitsStream[counter], counter);
         }
-    }
+    }    
 }
 
 
 
 /**
- * Calcula las coordenadas para el primer bit del
+ * Calcula las coordenadas para el primer bit cero del
  * método de codificación manchester diferencial. Llama a la función:
  * "drawLine" para dibujarlas junto con las respectivas líneas
  * punteadas.
@@ -146,7 +178,7 @@ function printDiffManchester(canvas, bitsStream) {
  * @param {object} canvas
  * @param {array of int} coordinates
  */
-function drawBitOneZeroDiffManchester(canvas, coordinates) {
+function drawBitZeroInitialDiffManchester(canvas, coordinates) {
 
     coordinates[1] += 20;
     coordinates[2] += 20;
@@ -174,6 +206,48 @@ function drawBitOneZeroDiffManchester(canvas, coordinates) {
 
 
     printDottedLine(canvas, getDottedCoordinatesP2(coordinates));
+}
+
+
+
+/**
+ * Calcula las coordenadas para el primer bit uno del
+ * método de codificación manchester diferencial. Llama a la función:
+ * "drawLine" para dibujarlas junto con las respectivas líneas
+ * punteadas.
+ *
+ * @param {object} canvas
+ * @param {array of int} coordinates
+ */
+function drawBitOneInitialDiffManchester(canvas, coordinates) {
+
+    coordinates[0] += 20;
+    coordinates[2] += 20;
+
+
+    printDottedLine(canvas, getDottedCoordinatesP1(coordinates));
+
+    drawLine(canvas, coordinates);
+
+
+    coordinates[0] += 20;
+    coordinates[3] += 20;
+
+    drawLine(canvas, coordinates);
+
+
+    coordinates[1] += 20;
+    coordinates[2] += 20;
+
+    drawLine(canvas, coordinates);    
+
+
+    dottedCoordinates = getDottedCoordinatesP2(coordinates);
+
+    dottedCoordinates[1] -= 20;
+    dottedCoordinates[3] -= 20;
+
+    printDottedLine(canvas, dottedCoordinates);
 }
 
 
@@ -274,36 +348,40 @@ function drawBitZeroDiffManchester(canvas, coordinates, flag) {
         coordinates[1] += 20;
         coordinates[2] += 20;
 
-        drawLine(canvas, coordinates);;
+        drawLine(canvas, coordinates);
+
+
+        let dottedCoordinates = getDottedCoordinatesP2(coordinates);
+
+        dottedCoordinates[1] -= 20;
+        dottedCoordinates[3] -= 20;
+
+        printDottedLine(canvas, dottedCoordinates);
     }
-    else {
-
-        coordinates[0] += 20;
-        coordinates[2] += 20;
-
-        drawLine(canvas, coordinates);
-
-
-        coordinates[0] += 20;
-        coordinates[3] += 20;
-
-        drawLine(canvas, coordinates);
-
+    else {                
 
         coordinates[1] += 20;
         coordinates[2] += 20;
 
         drawLine(canvas, coordinates);
+        
+
+        coordinates[0] += 20;
+        coordinates[3] -= 20;
+
+        drawLine(canvas, coordinates);
+
+
+        coordinates[1] -= 20;
+        coordinates[2] += 20;
+
+        drawLine(canvas, coordinates);
+
+
+        printDottedLine(canvas, getDottedCoordinatesP2(coordinates));
     }
-
-
-    let dottedCoordinates = getDottedCoordinatesP2(coordinates);
-
-    dottedCoordinates[1] -= 20;
-    dottedCoordinates[3] -= 20;
-
-    printDottedLine(canvas, dottedCoordinates);
 }
+
 
 
 
